@@ -18,33 +18,44 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     let array:[String] = ["1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2"]
     
+    var items: [GalleryItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(url)
+        result.getElements { (elements) in
+            
+            self.items = elements
+    
+            self.collectionView.reloadData()
+            
+        }
         
         let itemSize = UIScreen.main.bounds.width/3 - 1
         let layout = UICollectionViewFlowLayout()
+        
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
-        
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
         
         collectionView.collectionViewLayout = layout
+        
     }
 
     //Number of views
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return array.count
+        return items.count
     }
     
     //Populate view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.imageView.image = UIImage(named: array[indexPath.row] + ".jpg")
         return cell
+        
     }
-
+    
 }
 
