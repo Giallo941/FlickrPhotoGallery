@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
     var url = UrlManager.getItemUrl(query: nil, page: 1)
-    
     var result = NetworkClient(query: "bird", page: 1)
     
     let array:[String] = ["1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2"]
