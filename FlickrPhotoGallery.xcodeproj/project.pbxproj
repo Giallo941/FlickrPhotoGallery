@@ -21,6 +21,7 @@
 		0E3E39202077BA2D00CAAED7 /* RetriveElementsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3E391F2077BA2D00CAAED7 /* RetriveElementsInterface.swift */; };
 		0E3E39242077CD9400CAAED7 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E3E39222077CD9400CAAED7 /* 2.jpg */; };
 		0E3E39252077CD9400CAAED7 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E3E39232077CD9400CAAED7 /* 1.jpg */; };
+		0E915C0A207CEB6100A5B9D5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E915C09207CEB6100A5B9D5 /* DetailViewController.swift */; };
 		458808D8FF13BC8C0C3571E0 /* Pods_FlickrPhotoGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E43B6E1873B90F8CFCB26639 /* Pods_FlickrPhotoGallery.framework */; };
 		6A470CB3BFDA2213F1A6468F /* Pods_FlickrPhotoGalleryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E05796945F7F484D7275A519 /* Pods_FlickrPhotoGalleryUITests.framework */; };
 		F3AE7B0BC26D7BD3DC772817 /* Pods_FlickrPhotoGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5B7AC53E040AAD168023B /* Pods_FlickrPhotoGalleryTests.framework */; };
@@ -64,6 +65,7 @@
 		0E3E391F2077BA2D00CAAED7 /* RetriveElementsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetriveElementsInterface.swift; sourceTree = "<group>"; };
 		0E3E39222077CD9400CAAED7 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		0E3E39232077CD9400CAAED7 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		0E915C09207CEB6100A5B9D5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		26FEBC451A488E91A2124B2C /* Pods-FlickrPhotoGallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrPhotoGallery.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrPhotoGallery/Pods-FlickrPhotoGallery.release.xcconfig"; sourceTree = "<group>"; };
 		31BBB225FD8BEDA8CC3C4045 /* Pods-FlickrPhotoGalleryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrPhotoGalleryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrPhotoGalleryTests/Pods-FlickrPhotoGalleryTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EB6916265A012F3F5BA7287 /* Pods-FlickrPhotoGalleryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrPhotoGalleryUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrPhotoGalleryUITests/Pods-FlickrPhotoGalleryUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				0E3BE3DF2076669F00651A94 /* Main.storyboard */,
 				0E3BE3DB2076669F00651A94 /* AppDelegate.swift */,
 				0E3BE3DD2076669F00651A94 /* ViewController.swift */,
+				0E915C09207CEB6100A5B9D5 /* DetailViewController.swift */,
 				0E3BE40920766C0C00651A94 /* CollectionViewCell.swift */,
 				0E3BE42320767A7E00651A94 /* UrlManager.swift */,
 				0E3E391B20779AC000CAAED7 /* GalleryItem.swift */,
@@ -493,6 +496,7 @@
 				0E3BE40A20766C0C00651A94 /* CollectionViewCell.swift in Sources */,
 				0E3E39202077BA2D00CAAED7 /* RetriveElementsInterface.swift in Sources */,
 				0E3E391E2077AF8200CAAED7 /* NetworkClient.swift in Sources */,
+				0E915C0A207CEB6100A5B9D5 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +673,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RY8P4GJ2VZ;
 				INFOPLIST_FILE = FlickrPhotoGallery/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.MyGarage.FlickrPhotoGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -685,7 +692,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RY8P4GJ2VZ;
 				INFOPLIST_FILE = FlickrPhotoGallery/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.MyGarage.FlickrPhotoGallery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -702,7 +712,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RY8P4GJ2VZ;
 				INFOPLIST_FILE = FlickrPhotoGalleryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.MyGarage.FlickrPhotoGalleryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -720,7 +734,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RY8P4GJ2VZ;
 				INFOPLIST_FILE = FlickrPhotoGalleryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.MyGarage.FlickrPhotoGalleryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -737,7 +755,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RY8P4GJ2VZ;
 				INFOPLIST_FILE = FlickrPhotoGalleryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.MyGarage.FlickrPhotoGalleryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -754,7 +776,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RY8P4GJ2VZ;
 				INFOPLIST_FILE = FlickrPhotoGalleryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.MyGarage.FlickrPhotoGalleryUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

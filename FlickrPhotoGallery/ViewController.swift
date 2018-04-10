@@ -15,11 +15,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var txtSearchBar: UISearchBar!
     
     var url = UrlManager.getItemUrl(query: nil, page: 1)
-//    var result = NetworkClient(query: "bird", page: 1)
     var items: [GalleryItem] = []
-    
-    var isSearching = false
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,24 +53,27 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let desVc = mainStoryBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let imageView = UIImageView()
+        imageView.sd_setImage(with: items[indexPath.row].getUrl())
+        desVc.image = imageView.image!
+        self.navigationController?.pushViewController(desVc, animated: true)
+        
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchBar.text == nil || searchBar.text == "" {
             
-            isSearching = false
-            
             view.endEditing(true)
-            
             collectionView.reloadData()
             
         } else {
             
             startLoading(query: searchBar.text)
-            
-            isSearching = true
-            
-            //TODO: call a Func
-            
             collectionView.reloadData()
             
         }
@@ -83,6 +82,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
+        startLoading(query: searchBar.text)
         view.endEditing(true)
         
     }
