@@ -45,10 +45,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        let imageView = UIImageView()
-        imageView.sd_setImage(with: items[indexPath.row].getUrl())
-        cell.imageView.image = imageView.image
-        
+        cell.imageView.sd_setImage(with: items[indexPath.row].getUrl())
+
         return cell
         
     }
@@ -57,10 +55,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let desVc = mainStoryBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        let imageView = UIImageView()
-        imageView.sd_setImage(with: items[indexPath.row].getUrl())
-        desVc.image = imageView.image!
-        self.navigationController?.pushViewController(desVc, animated: true)
+        desVc.url = items[indexPath.row].getUrl()
+        self.navigationController!.pushViewController(desVc, animated: true)
         
     }
     
@@ -74,7 +70,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         } else {
             
             startLoading(query: searchBar.text)
-            collectionView.reloadData()
+//            collectionView.reloadData()
             
         }
         

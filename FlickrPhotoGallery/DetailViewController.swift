@@ -10,14 +10,13 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var imgView: UIImageView!
-    var image = UIImage()
+    @IBOutlet private weak var imgView: UIImageView!
+    var  url: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imgView.image = image
-        
+        imgView.sd_setImage(with: url)
     }
     
 }

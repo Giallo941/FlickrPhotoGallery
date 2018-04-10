@@ -25,6 +25,10 @@ class NetworkClient : RetriveElementsInterface {
         let urlString : String = UrlManager.getItemUrl(query: query, page: page)
         
         let url = URL(string: urlString)
+        guard url != nil else {
+            completion([GalleryItem]())
+            return
+        }
         
         URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
             guard let data = data, error == nil else { return }
