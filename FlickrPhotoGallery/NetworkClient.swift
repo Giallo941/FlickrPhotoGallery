@@ -10,10 +10,10 @@ import Foundation
 
 class NetworkClient : RetriveElementsInterface {
     
-    let query : String
+    let query : String?
     let page : Int
     
-    init(query: String, page: Int) {
+    init(query: String?, page: Int) {
         
         self.query = query
         self.page = page
@@ -41,7 +41,7 @@ class NetworkClient : RetriveElementsInterface {
                     let id = photoDictionary["id"] as? String ?? ""
                     let secret = photoDictionary["secret"] as? String ?? ""
                     let server = photoDictionary["server"] as? String ?? ""
-                    let farm = photoDictionary["farm"] as? String ?? ""
+                    let farm = photoDictionary["farm"] as? Int ?? 0
                     
                     let galleryItem = GalleryItem(id: id, secret: secret, server: server, farm: farm)
                     

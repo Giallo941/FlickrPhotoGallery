@@ -16,12 +16,12 @@ struct GalleryItem {
     let server: String
     let farm: String
     
-    init(id: String, secret: String, server: String, farm: String) {
+    init(id: String, secret: String, server: String, farm: Int) {
         
         self.id = id
         self.secret = secret
         self.server = server
-        self.farm = farm
+        self.farm = String(farm)
         
     }
     
@@ -31,7 +31,7 @@ struct GalleryItem {
     
     func getUrl() -> URL {
         
-        return URL(string: "http://farm\(farm).static.flickr.com/\(server)/\(id)_\(secret)_.jpg")!
+        return URL(string: "http://farm\(farm).static.flickr.com/\(server)/\(id)_\(secret).jpg")!
         
     }
     

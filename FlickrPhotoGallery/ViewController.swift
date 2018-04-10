@@ -9,26 +9,24 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var txtSearchBar: UISearchBar!
+    
     var url = UrlManager.getItemUrl(query: nil, page: 1)
-    var result = NetworkClient(query: "bird", page: 1)
-    
-    let array:[String] = ["1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2","1","2"]
-    
+//    var result = NetworkClient(query: "bird", page: 1)
     var items: [GalleryItem] = []
+    
+    var isSearching = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        result.getElements { (elements) in
-            
-            self.items = elements
-    
-            self.collectionView.reloadData()
-            
-        }
+        startLoading(query: nil)
+        
+        txtSearchBar.delegate = self
         
         let itemSize = UIScreen.main.bounds.width/3 - 1
         let layout = UICollectionViewFlowLayout()
@@ -51,8 +49,61 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        cell.imageView.image = UIImage(named: array[indexPath.row] + ".jpg")
+        let imageView = UIImageView()
+        imageView.sd_setImage(with: items[indexPath.row].getUrl())
+        cell.imageView.image = imageView.image
+        
         return cell
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text == nil || searchBar.text == "" {
+            
+            isSearching = false
+            
+            view.endEditing(true)
+            
+            collectionView.reloadData()
+            
+        } else {
+            
+            startLoading(query: searchBar.text)
+            
+            isSearching = true
+            
+            //TODO: call a Func
+            
+            collectionView.reloadData()
+            
+        }
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        view.endEditing(true)
+        
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        txtSearchBar.endEditing(true)
+        
+    }
+    
+    func startLoading(query: String?) {
+        
+        let result = NetworkClient(query: query, page: 1)
+        
+        result.getElements { (elements) in
+            
+            self.items = elements
+            
+            self.collectionView.reloadData()
+            
+        }
         
     }
     
