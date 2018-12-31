@@ -9,7 +9,5 @@
 import Foundation
 
 protocol RetriveElementsInterface {
-    
-    func getElements(_ completion:  @escaping ([GalleryItem]) -> ());
-    
+    func getElements(_ completion:  @escaping ([GalleryItem]) -> ())
 }

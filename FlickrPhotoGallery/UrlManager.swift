@@ -18,21 +18,15 @@ class UrlManager {
     static let methodSearch = "flickr.photos.search"
     
     static func getItemUrl(query: String?, page: Int) -> String {
-        
         var url: String
         
         if (query != nil) {
-            
             url = "\(endPoint)?method=\(methodSearch)&api_key=\(apiKey)&format=json&nojsoncallback=1&text=\(query!)&page=\(page)"
-            
         } else {
-            
             url = "\(endPoint)?method=\(methodGetRecent)&api_key=\(apiKey)&format=json&nojsoncallback=1&page=\(page)"
-            
         }
         
         return url
-        
     }
 
 }

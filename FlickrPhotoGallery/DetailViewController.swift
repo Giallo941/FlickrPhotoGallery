@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.largeTitleDisplayMode = .never
         imgView.sd_setImage(with: url)
     }
     

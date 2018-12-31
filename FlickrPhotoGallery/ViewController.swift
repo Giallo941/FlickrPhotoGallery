@@ -12,18 +12,25 @@ import SDWebImage
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var txtSearchBar: UISearchBar!
     
+    let searchController = UISearchController(searchResultsController: nil)
     var url = UrlManager.getItemUrl(query: nil, page: 1)
     var items: [GalleryItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavBar()
+        setupCollectionView()
         startLoading(query: nil)
-        
-        txtSearchBar.delegate = self
-        
+    }
+    
+    private func setupNavBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.searchBar.delegate = self
+    }
+    
+    private func setupCollectionView() {
         let itemSize = UIScreen.main.bounds.width/3 - 1
         let layout = UICollectionViewFlowLayout()
         
@@ -33,7 +40,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         layout.minimumLineSpacing = 1
         
         collectionView.collectionViewLayout = layout
-        
     }
 
     //Number of views
@@ -43,12 +49,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     //Populate view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.imageView.sd_setImage(with: items[indexPath.row].getUrl())
 
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -61,46 +65,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         if searchBar.text == nil || searchBar.text == "" {
-            
             view.endEditing(true)
             collectionView.reloadData()
-            
         } else {
-            
             startLoading(query: searchBar.text)
-//            collectionView.reloadData()
-            
         }
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         startLoading(query: searchBar.text)
         view.endEditing(true)
-        
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        txtSearchBar.endEditing(true)
-        
+        searchController.searchBar.endEditing(true)
     }
     
     func startLoading(query: String?) {
-        
         let result = NetworkClient(query: query, page: 1)
         
         result.getElements { (elements) in
-            
             self.items = elements
-            
             self.collectionView.reloadData()
-            
         }
-        
     }
     
 }
