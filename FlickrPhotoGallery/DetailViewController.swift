@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet private weak var imgView: UIImageView!
-    var  url: URL!
+    var url: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()

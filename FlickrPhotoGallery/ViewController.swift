@@ -14,7 +14,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var collectionView: UICollectionView!
     
     let searchController = UISearchController(searchResultsController: nil)
-    var url = UrlManager.getItemUrl(query: nil, page: 1)
     var items: [GalleryItem] = []
     
     override func viewDidLoad() {
@@ -56,12 +55,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let desVc = mainStoryBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         desVc.url = items[indexPath.row].getUrl()
         self.navigationController!.pushViewController(desVc, animated: true)
-        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
